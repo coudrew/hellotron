@@ -1,0 +1,8 @@
+{
+  "name": "hellotron",
+  "version": "1.0.0",
+  "description": "electron hello world",
+  "main": "index.js",
+  "author": "coudrew",
+  "license": "MIT"
+}
