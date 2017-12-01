@@ -21,5 +21,10 @@
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.5"
+  },
+  "scripts": {
+    "build:pre": "cp src/electron/package.json build/ && cp src/electron/main.js build/ && cp src/html/index.html build/",
+    "build": "yarn build:pre && webpack --config webpack.config.js",
+    "start": "./node_modules/.bin/electron build ."
   }
 }
