@@ -1,27 +1,17 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
-const url = require('url');
+import {createWindow} from "./createWindow";
 
-let win;
+const { app } = require('electron');
 
-export const createWindow = () => {
-  win = new BrowserWindow({ width: 800, height: 600 });
-  win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file',
-    slashes: true
-  }));
 
-  win.webContents.openDevTools();
-  win.on('closed', () => {
+let mainWindow;
 
-    win = null;
-  });
+const initMainWindow = () => {
+  mainWindow = createWindow();
 };
 
-app.on('ready', createWindow);
+app.on('ready', initMainWindow);
 
 app.on('activate', () => {
-  win === null && createWindow();
+  mainWindow === null && initMainWindow();
 });
 

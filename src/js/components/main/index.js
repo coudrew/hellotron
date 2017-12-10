@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Box, Text } from 'react-desktop';
 
 class Main extends Component {
   constructor(props) {
@@ -7,12 +6,10 @@ class Main extends Component {
   }
 
   render() {
-    const { label, width, height } = this.props;
-
     return(
-      <Box label={ label } width={ width } height={ height } >
-        <Text>Hello World!</Text>
-      </Box>
+      <div>
+        cough
+      </div>
     )
   }
 }

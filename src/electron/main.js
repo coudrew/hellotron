@@ -76,14 +76,21 @@ module.exports = require("electron");
 "use strict";
 
 
-var _electron = __webpack_require__(0);
-
 var _createWindow = __webpack_require__(2);
 
-_electron.app.on('ready', _createWindow.createWindow);
+var _require = __webpack_require__(0),
+    app = _require.app;
 
-_electron.app.on('activate', function () {
-  win === null && (0, _createWindow.createWindow)();
+var mainWindow = void 0;
+
+var initMainWindow = function initMainWindow() {
+  mainWindow = (0, _createWindow.createWindow)();
+};
+
+app.on('ready', initMainWindow);
+
+app.on('activate', function () {
+  mainWindow === null && initMainWindow();
 });
 
 /***/ }),
@@ -96,29 +103,28 @@ _electron.app.on('activate', function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.createWindow = undefined;
 
-var _require = __webpack_require__(0),
-    BrowserWindow = _require.BrowserWindow;
+var _electron = __webpack_require__(0);
 
 var path = __webpack_require__(3);
 var url = __webpack_require__(4);
 
-var createWindow = exports.createWindow = function createWindow(windowConfig) {
-  var win = new BrowserWindow(windowConfig);
+var createWindow = exports.createWindow = function createWindow() {
+  var win = new _electron.BrowserWindow({ width: 800, height: 600 });
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file',
     slashes: true
   }));
 
-  win.on('show', function () {
-    win.webContents.openDevTools();
-  });
-
+  win.webContents.openDevTools();
   win.on('closed', function () {
 
     win = null;
   });
+
+  return win;
 };
 
 /***/ }),

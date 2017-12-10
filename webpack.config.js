@@ -26,6 +26,6 @@ module.exports = {
       }
     ]
   },
-  target: "electron-main",
+  target: "electron-renderer",
   devtool: "source-map"
 };
